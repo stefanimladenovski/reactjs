@@ -1,47 +1,66 @@
 import { useState } from "react"
 
-export const ListTodos = ({todos, markAsCompleted,deleteTodo}) => {
+export const ListTodos = ({todos, markAsCompleted, deleteTodo, changeText}) => {
+
+    const [editId, setEditId] = useState()
+    const [editedText, setEditedText] = useState()
 
     const completed = todos.filter(todo => todo.completed).length
 
-    const [editId, setEditId] = useState()
-
-    const markAsEditable = (id) => {
+    const markAsEditable = (id, text) => {
+        setEditedText(text)
         setEditId(id)
     }
 
-    return <div>
-        <p>Completed : {completed} </p>
-        <ul> {todos.map(todo => (
-            <li key={todo.id}  >
-                {editId == todo.id ? 
-                <input 
-                value={todo.text}
-                //onChange={() => changeText(todo.id)}
-                />
-                 :
-                    <span 
-                    className={todo.completed ? "mark-as-done" : ""}
-                    > {todo.text}</span>}
+    const ok = () => {
+        changeText(editId, editedText)
+        setEditId()
+    }
+    const cancel = () => {
+        setEditedText()
+        setEditId()
+    }
 
+    return <div>
+    <p>COMPLETED : {completed}</p>
+    <ul>
+        {todos.map(todo => (
+            <li key={todo.id} >
+                {editId === todo.id ? 
+                    <div>
+                        <input 
+                            value={editedText} 
+                            onChange={(e) => setEditedText(e.target.value)}/>
+                        <button
+                            onClick={() => ok()}
+                            >OK</button>
+                        <button
+                            onClick={() => cancel()}
+                            >CANCEL</button>
+                    </div>
+                :
+                <span
+                    className={ todo.completed ? "mark-as-done" : ""}
+                    >{todo.text}</span>
+                }
                 <div>
                     <button
-                    onClick={() => markAsEditable(todo.id)}
-                    >Edit</button>
+                        onClick={() => markAsEditable(todo.id, todo.text)}
+                        >Edit</button>
                     <input 
-                    type="checkbox"
-                    value={todo.completed} 
-                    checked={todo.completed}
-                    onChange={() => markAsCompleted(todo.id)}
-                    />
+                        type="checkbox"
+                        value={todo.completed}
+                        checked={todo.completed}
+                        onChange={() => markAsCompleted(todo.id)}
+                        />
                     <span
-                    className="deleteSpan"
-                    onClick={() => deleteTodo(todo.id)}
-                    >X</span>
+                        className={"deleteSpan"}
+                        onClick={() => deleteTodo(todo.id)}
+                        > X </span>
                 </div>
-
             </li>
-            ))}
-        </ul>
-    </div>
+        ))}
+    </ul>
+</div>
+
 }
