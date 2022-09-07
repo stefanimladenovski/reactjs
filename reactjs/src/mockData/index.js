@@ -1,5 +1,5 @@
 export const socials = [
-    {value: "facebook", name: "Facebook"},
+    {value: "facebook", name: "Facebook", keyCode: "someKeyCode"},
     {value: "insta", name: "Instagram"},
     {value: "snap", name: "Snapchat"},
     {value: "tiktok", name: "Tik-tok"},

@@ -25,6 +25,5 @@ export const DisplayDropdowns = () => {
         <p>selected social: {social} </p>
         <p>selected person: {person} </p>
       </div>
-
     )
 }

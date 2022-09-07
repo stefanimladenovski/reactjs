@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 export const Examples = () => {
-                         ////EXAMPLE 2
+                         ////EXAMPLE 1
     const[car, setCar] = useState({
         model: "Hyundai",
         year: 2021,
@@ -9,7 +9,7 @@ export const Examples = () => {
     });
 
     const printObject = (object) => {
-        return JSON.stringify(car, null, 2)
+        return <pre>{JSON.stringify(car, null, 2)}</pre> 
     };
 
     const changeKm = () => {
@@ -19,7 +19,7 @@ export const Examples = () => {
         })
     };
 
-                            //EXAMPLE 1
+                            //EXAMPLE 2
 
     const [daysOff, setDaysOff] = useState(['Saturday', 'Sunday']);
 
@@ -28,21 +28,20 @@ export const Examples = () => {
     const addNewDayOff = () => {
         setDaysOff([...daysOff, newDay]);
         setNewDay("")
-
     };
 
     return (
         <div>
             <h2>Example 1</h2>
            {printObject(car)}
-           <button onClick={() => changeKm()}>
-            Change KM to 9999</button>
+           <button onClick={() => changeKm()}
+           > Change KM to 9999 </button>
             <input 
-            placeholder="Enter km"
-            value={car.km} 
-            onChange={(e) => setCar({...car, km: e.target.value})} 
+               placeholder="Enter km"
+               value={car.km} 
+               onChange={(e) => setCar({...car, km: e.target.value})} 
             />
-            <br /><hr />
+            <br /> <hr />
 
             <h2>Example 2</h2>
             <input 
@@ -50,12 +49,11 @@ export const Examples = () => {
             value={newDay} 
             onChange ={((e) => setNewDay(e.target.value))} 
             />
-            <button onClick={addNewDayOff}>
-            Add Day Off
-            </button>
+
+            <button onClick={addNewDayOff}
+            >Add Day Off </button>
 
             {daysOff.map((day, i) => <li key={i}> {day} </li> )}
-
         </div>
     );
 };
