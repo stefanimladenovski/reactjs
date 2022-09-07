@@ -9,7 +9,7 @@ const liStyle = {
 
 const ulStyle = {
     display: "flex",
-    justifyContent:"space-beetween"
+    justifyContent:"space-around"
 }
 
 

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
+
 //Router
 import {Routes , Route} from  "react-router-dom"
+
 //Components
 import {Nav} from "./components/Nav"
 import { Home } from "./components/Home";
@@ -58,7 +60,6 @@ const App = () => {
         <Route path="*" element={<NotFound/>}/>
 
       </Routes>
-
     </div>
   )
 };

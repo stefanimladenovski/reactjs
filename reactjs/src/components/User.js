@@ -4,7 +4,6 @@ export const User = () => {
     const {id} = useParams()
     return (<>
     <h3>This is User component ID =&gt;  {id}</h3>
-      
     </>)
 }
 
